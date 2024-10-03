@@ -1,5 +1,5 @@
 extends Node
-class_name twirp_Request
+class_name TwirpRequest
 
 var token : String
 var server : String
@@ -7,17 +7,17 @@ var service : String
 var method : String
 var _http_request : HTTPRequest
 
-func _rpcResult(result : Dictionary) -> twirp_Response:
-	var res = twirp_Response.new()
+func _rpcResult(result : Dictionary) -> TwirpResponse:
+	var res = TwirpResponse.new()
 	res.result = result
 	return res
 
-func _rpcError(message : String) -> twirp_Response:
-	var res = twirp_Response.new()
+func _rpcError(message : String) -> TwirpResponse:
+	var res = TwirpResponse.new()
 	res.error = message
 	return res
 
-func rpcCall(req : Dictionary) -> twirp_Response:
+func rpcCall(req : Dictionary) -> TwirpResponse:
 	_http_request = HTTPRequest.new()
 	add_child(_http_request)
 	

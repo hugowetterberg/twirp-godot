@@ -1,5 +1,5 @@
-extends Node
-class_name twirp_ClientCredentials
+extends TwirpTokenSource
+class_name TwirpClientCredentials
 
 @export var token_endpoint : String
 @export var client_id : String
@@ -11,9 +11,6 @@ var in_progress : bool
 var expiryTimer : Timer = Timer.new()
 
 var _http_request : HTTPRequest
-
-signal got_token(token: String)
-signal token_expired
 
 func _ready() -> void:
 	expiryTimer.timeout.connect(_token_expired)

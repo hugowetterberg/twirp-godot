@@ -1,5 +1,5 @@
 extends Resource
-class_name twirp_Response
+class_name TwirpResponse
 
 var result : Dictionary
 var error : String

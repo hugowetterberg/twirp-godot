@@ -38,17 +38,17 @@ func _ready() -> void:
 	var documents = elephant_repository_Documents.new(creds, "https://repository.example.com")
 	add_child(documents)
 
-	var req = elephant_repository_GetDocumentRequest.new()
-	req.f_uuid = "420e1b6c-3528-40be-bb17-de44b590c2b9"
+    var req = elephant_repository_GetDocumentRequest.from_dictionary({
+		"uuid": "958949f3-da6b-4a2e-bb0d-2b94b4fda0b4",
+	}, true)
 
 	var res = await documents.Get(req)
 	if res.error != "":
 		print("failed to get document: %s" % res.error)
 	else:
-		var resData = elephant_repository_GetDocumentResponse.new()
-		resData.from_dictionary(res.result)
+		var resData = elephant_repository_GetDocumentResponse.from_dictionary(res.result)
 
 		print("Document title:", resData.f_document.f_title)
 ```
 
-The `add_child()` calls are necessary because `HTTPRequest`s must be in the tree to work.
+The `add_child()` calls are necessary because `HTTPRequest`s must be in the tree to work. This is not needed if the client credentials and services are created as part of the scene.
